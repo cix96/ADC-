@@ -1,0 +1,5 @@
+--create ".\Objects\Project template.lib"
+.\objects\main.o
+.\objects\startup_stm32f40_41xxx.o
+.\objects\system_stm32f4xx.o
+".\Project template.lib"

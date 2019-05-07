@@ -1,0 +1,12 @@
+--cpu=Cortex-M4.fp
+".\objects\main.o"
+".\objects\usart.o"
+".\objects\adc.o"
+".\objects\dma.o"
+".\objects\system_stm32f4xx.o"
+".\objects\startup_stm32f40_41xxx.o"
+".\Project template.lib"
+--strict --scatter ".\Objects\BIN_file.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\BIN_file.map" -o .\Objects\BIN_file.axf
