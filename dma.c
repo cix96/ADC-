@@ -20,7 +20,7 @@ void DMA_init(void)
 		DMA_InitStruct.DMA_PeripheralBaseAddr = ADC3_DR_ADDRESS;
 		DMA_InitStruct.DMA_Memory0BaseAddr =(uint32_t)&ADCConvertedValue;
 		DMA_InitStruct.DMA_DIR = DMA_DIR_PeripheralToMemory;
-		DMA_InitStruct.DMA_BufferSize = 4;
+		DMA_InitStruct.DMA_BufferSize = 1;
 		DMA_InitStruct.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
 		DMA_InitStruct.DMA_MemoryInc = DMA_MemoryInc_Enable;
 		DMA_InitStruct.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
@@ -38,17 +38,16 @@ void DMA_init(void)
 		DMA_Cmd(DMA2_Stream1, ENABLE);
 		DMA_ITConfig(DMA2_Stream1, DMA_IT_TC, ENABLE);
 		
-		
-		// Configure NVIC(nested vectored interrupt controller) for ADC
-		NVIC_InitStruct.NVIC_IRQChannel = DMA2_Stream1_IRQn;
-		NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 8;	// highest priority
-		NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0;					// highest subpriority
-		NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
-		NVIC_Init(&NVIC_InitStruct);
-				
 		// Configure priority bits
 		NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);		// 4 bits preemptive,0 bits for subpriority
 		
+		// Configure NVIC(nested vectored interrupt controller) for ADC
+		NVIC_InitStruct.NVIC_IRQChannel = DMA2_Stream1_IRQn;
+		NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 0;	// highest priority
+		NVIC_InitStruct.NVIC_IRQChannelSubPriority = 1;					// highest subpriority
+		NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
+		NVIC_Init(&NVIC_InitStruct);
+						
 		// enable requests after last transfer		
 		//ADC_MultiModeDMARequestAfterLastTransferCmd(ENABLE);
 		ADC_DMARequestAfterLastTransferCmd(ADC3,ENABLE);

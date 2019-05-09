@@ -8,7 +8,6 @@ void timer2_init(void) {
 	
 			TIM_TimeBaseInitTypeDef 		TIM_TimeBaseStructure; 	// init def struct for timer
 			NVIC_InitTypeDef 						NVIC_InitStructure; 		// init def struct for NVIC
-			uint16_t 										TimerPeriod; 						// 16-bit value because ARR register is 16-bit (although TIM2 is 32-bit!)
 			
 			RCC_ClocksTypeDef 					RCC_Clocks; 						// for reading current clock setting - useful
 			
@@ -19,12 +18,11 @@ void timer2_init(void) {
 			RCC_GetClocksFreq(&RCC_Clocks); 												// fill query struct
 			
 			//	APB1_CLK = RCC_Clocks.PCLK1_Frequency; // WARNING: APB1 is "slow" peripheral interface that with
-			TimerPeriod = 16799;
 			
 			// Time Base configuration
 			TIM_TimeBaseStructure.TIM_Prescaler = 2499;
 			TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; // counts from 0 to autoreload, and then back to 0
-			TIM_TimeBaseStructure.TIM_Period = TimerPeriod;
+			TIM_TimeBaseStructure.TIM_Period = 16799;
 			TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 			TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
 			TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
@@ -49,9 +47,7 @@ void timer2_init(void) {
 void TIM2_IRQHandler(void){
 	
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET){	
-		
+			voltage_measure();
 			TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
-					
-									voltage_measure();
 	}
 }

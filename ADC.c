@@ -35,13 +35,13 @@ void ADC_Init123(void)
 			ADC_InitStruct.ADC_ContinuousConvMode = DISABLE; 															// Continuous mode disabled
 			ADC_InitStruct.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None; 
 			ADC_InitStruct.ADC_DataAlign = ADC_DataAlign_Right; 													// Right alignement
-			ADC_InitStruct.ADC_NbrOfConversion = 1;								
+			ADC_InitStruct.ADC_NbrOfConversion = 4;								
 			ADC_Init(ADC3, &ADC_InitStruct);
 			
 		
 			// Configure regular channel group
 			ADC_RegularChannelConfig(	ADC3,																// ADC peripheral
-																ADC_Channel_1,											// ADC channel to configure U1
+																ADC_Channel_0,											// ADC channel to configure U1
 																1,																	// rank, first in order
 																ADC_SampleTime_28Cycles);						// 28 sampling cycles
 		
