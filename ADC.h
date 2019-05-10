@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <DMA.h>
 
-#define U1					GPIO_Pin_0
+#define U1					GPIO_Pin_1
 
 void ADC_Init123(void);
 void DMA2_Stream1_IRQHandler(void);

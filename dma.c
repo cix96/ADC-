@@ -61,7 +61,7 @@ void DMA2_Stream1_IRQHandler(void)
 {
 	if(DMA_GetITStatus(DMA2_Stream1, DMA_IT_TCIF1) == SET)			
 	{
-		Voltage.U = ADCConvertedValue*3230/0xFFF; 
+		Voltage.U = ADCConvertedValue*4800/0xFFF; 
 		DMA_ClearITPendingBit(DMA2_Stream1, DMA_IT_TCIF1);		// clear pending bit
 		ADC_SoftwareStartConv(ADC3);
 	}		

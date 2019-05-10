@@ -12,13 +12,13 @@ void ADC_Init123(void)
 
 			// enable the ADC interface and GPIO clock
 			RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC3, ENABLE); 		// ADC3 interface clock
-			RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE); 	// ADC GPIOs clock
+			RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE); 	// ADC GPIOs clock
 			RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE); 		// DMA clock
 		
 			// Configure ADC pins in analog mode
 			GPIO_InitStruct.GPIO_Pin = U1; 													// port A ADC inputs
 			GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AN; 							// analog mode
-			GPIO_Init(GPIOA, &GPIO_InitStruct);	
+			GPIO_Init(GPIOC, &GPIO_InitStruct);	
 	
 			// Select the Independent mode ADC regular channels features
 			ADC_CommonInitStruct.ADC_Mode = ADC_Mode_Independent;							
@@ -41,9 +41,9 @@ void ADC_Init123(void)
 		
 			// Configure regular channel group
 			ADC_RegularChannelConfig(	ADC3,																// ADC peripheral
-																ADC_Channel_0,											// ADC channel to configure U1
+																ADC_Channel_11,											// ADC channel to configure U1
 																1,																	// rank, first in order
-																ADC_SampleTime_28Cycles);						// 28 sampling cycles
+																ADC_SampleTime_15Cycles);						// 28 sampling cycles
 		
 			// enable DMA for ADCs
 			ADC_DMACmd(ADC3, ENABLE);
