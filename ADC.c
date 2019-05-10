@@ -31,11 +31,11 @@ void ADC_Init123(void)
 		
 			// Configure the ADC3
 			ADC_InitStruct.ADC_Resolution = ADC_Resolution_12b; 													// 12 bit
-			ADC_InitStruct.ADC_ScanConvMode = ENABLE;																			// DMA cares for results 
-			ADC_InitStruct.ADC_ContinuousConvMode = DISABLE; 															// Continuous mode disabled
+			ADC_InitStruct.ADC_ScanConvMode = DISABLE;																			// DMA cares for results 
+			ADC_InitStruct.ADC_ContinuousConvMode = ENABLE; 															// Continuous mode disabled
 			ADC_InitStruct.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None; 
 			ADC_InitStruct.ADC_DataAlign = ADC_DataAlign_Right; 													// Right alignement
-			ADC_InitStruct.ADC_NbrOfConversion = 4;								
+			ADC_InitStruct.ADC_NbrOfConversion = 1;								
 			ADC_Init(ADC3, &ADC_InitStruct);
 			
 		
